@@ -27,11 +27,11 @@ module.exports = {
             return console.error("Error: Chroma editing is already active");
         }
         const postData = JSON.stringify({
-            "title": "Razer Chroma SDK RESTful Test Application",
-            "description": "This is a REST interface test application",
+            "title": "Razer Chroma nodejs Editor",
+            "description": "This edits Razer Chroma effects using nodejs",
             "author": {
-                "name": "Alex Martin",
-                "contact": "www.razerzone.com"
+                "name": "",
+                "contact": ""
             },
             "device_supported": [
                 "keyboard",
