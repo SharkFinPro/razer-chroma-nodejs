@@ -98,21 +98,16 @@ module.exports = {
     },
     getEffectData(effect, param) {
         if (effect === "CHROMA_NONE") {
-            return JSON.stringify({
-                "effect": effect
-            });
+            return JSON.stringify({ effect });
         } else if (effect === "CHROMA_STATIC") {
             return JSON.stringify({
-                "effect": effect,
+                effect,
                 "param": {
                     "color": param
                 }
             });
         } else {
-            return JSON.stringify({
-                "effect": effect,
-                "param": param
-            });
+            return JSON.stringify({ effect, param });
         }
     },
     createEffect(type, effect, param) {
@@ -144,9 +139,7 @@ module.exports = {
         if (!this.sessionid) {
             return console.error("Error: Chroma editing is not active");
         }
-        const postData = JSON.stringify({
-            "id": id
-        });
+        const postData = JSON.stringify({ id });
 
         const req = http.request({
             hostname: "localhost",
