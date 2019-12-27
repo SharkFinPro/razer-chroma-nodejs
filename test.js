@@ -1,12 +1,23 @@
-const Chroma = require("./chroma.js"); // Get chroma object
+const Chroma = require("./chroma.js");
 
-Chroma.init(() => { // Star chroma editing, do stuff in callback
+// Initialize Chroma
+Chroma.init(async () => {
     console.log("Chroma Editing Started");
-    Chroma.createEffect("mouse", "CHROMA_STATIC", 0X00FFFF); // Set mouse color to Yellow (BGR Format)
-    Chroma.createEffect("mousepad", "CHROMA_STATIC", 0X0000FF); // Set mousepad color to Red (BGR Format)
-    Chroma.createEffect("headset", "CHROMA_STATIC", 0XFF0000); // Set headset color to Blue (BGR Format)
-    setTimeout(() => { // Stop Chroma after 5 Seconds
-        Chroma.uninit(() => { // Do stuff with callback after chroma is closed
+    // Set mouse color to Yellow (BGR Format)
+    const mouseEffect = await Chroma.createEffect("mouse", "CHROMA_STATIC", 0X00FFFF);
+    Chroma.setEffect(mouseEffect);
+
+    // Set mousepad color to Red (BGR Format)
+    const mousepadEffect = await Chroma.createEffect("mousepad", "CHROMA_STATIC", 0X0000FF);
+    Chroma.setEffect(mousepadEffect);
+
+    // Set headset color to Blue (BGR Format)
+    const headsetEffect = await Chroma.createEffect("headset", "CHROMA_STATIC", 0XFF0000);
+    Chroma.setEffect(headsetEffect);
+
+    // Stop Chroma after 5 Seconds
+    setTimeout(() => {
+        Chroma.uninit(() => {
             console.log("Chroma Editing Stopped");
         });
     }, 5000);

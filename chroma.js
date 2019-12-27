@@ -1,5 +1,31 @@
 const http = require("http");
 
+const httpRequest = (params, postData) => {
+    return new Promise((resolve, reject) => {
+        const req = http.request(params, (res) => {
+            if (res.statusCode < 200 || res.statusCode >= 300) {
+                return reject(new Error('statusCode=' + res.statusCode));
+            }
+            const body = [];
+            res.on('data', (chunk) => {
+                body.push(chunk);
+            });
+
+            res.on('end', () => {
+                resolve(JSON.parse(Buffer.concat(body).toString()));
+            });
+        });
+
+        req.on('error', (err) => {
+            reject(err);
+        });
+        if (postData) {
+            req.write(postData);
+        }
+        req.end();
+    });
+};
+
 module.exports = {
     sendHeartbeat() {
         if (!this.sessionid) {
@@ -9,8 +35,7 @@ module.exports = {
             if (!this.sessionid) {
                 return;
             }
-
-            const req = http.request({
+            httpRequest({
                 hostname: "localhost",
                 port: this.sessionid,
                 path: "/chromasdk/heartbeat",
@@ -18,15 +43,23 @@ module.exports = {
                 headers: {
                     "Content-Type": "application/json"
                 }
-            }).on("error", console.error);
-            req.end();
+            });
         }, 1000);
     },
     init(callback) {
         if (this.sessionid) {
             return console.error("Error: Chroma editing is already active");
         }
-        const postData = JSON.stringify({
+
+        httpRequest({
+            hostname: "localhost",
+            port: 54235,
+            path: "/razer/chromasdk",
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }, JSON.stringify({
             "title": "Razer Chroma nodejs Editor",
             "description": "This edits Razer Chroma effects using nodejs",
             "author": {
@@ -41,40 +74,19 @@ module.exports = {
                 "keypad",
                 "chromalink"],
             "category": "application"
+        })).then((data) => {
+            this.sessionid = data.sessionid;
+            this.sendHeartbeat();
+            callback();
         });
-
-        const req = http.request({
-            hostname: "localhost",
-            port: 54235,
-            path: "/razer/chromasdk",
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Content-Length": postData.length
-            }
-        }, (res) => {
-            res.setEncoding("utf8");
-            res.on("data", (chunk) => {
-                this.sessionid = JSON.parse(chunk).sessionid;
-            });
-            res.on("end", () => {
-                this.sendHeartbeat();
-                if (callback) {
-                    callback();
-                }
-            });
-        }).on("error", console.error);
-
-        req.write(postData);
-        req.end();
     },
     uninit(callback) {
         if (!this.sessionid) {
             return console.error("Error: Chroma editing is not active");
         }
-        this.heatbeat = clearInterval(this.heartbeat);
+        this.heartbeat = clearInterval(this.heartbeat);
 
-        const req = http.request({
+        httpRequest({
             hostname: "localhost",
             port: this.sessionid,
             path: "/chromasdk",
@@ -82,19 +94,10 @@ module.exports = {
             headers: {
                 "Content-Type": "application/json"
             }
-        }, (res) => {
-            res.setEncoding("utf8");
-            res.on("data", (chunk) => {
-                this.sessionid = undefined;
-            });
-            res.on("end", () => {
-                if (callback) {
-                    callback();
-                }
-            });
-        }).on("error", console.error);
-
-        req.end();
+        }).then(() => {
+            this.sessionid = undefined;
+            callback();
+        });
     },
     getEffectData(effect, param) {
         if (effect === "CHROMA_NONE") {
@@ -116,7 +119,7 @@ module.exports = {
         }
         const postData = this.getEffectData(effect, param);
 
-        const req = http.request({
+        return httpRequest({
             hostname: "localhost",
             port: this.sessionid,
             path: "/chromasdk/" + type,
@@ -125,34 +128,24 @@ module.exports = {
                 "Content-Type": "application/json",
                 "Content-Length": postData.length
             }
-        }, (res) => {
-            res.setEncoding("utf8");
-            res.on("data", (chunk) => {
-                setTimeout(() => this.setEffect(JSON.parse(chunk).id), 600);
-            });
-        }).on("error", console.error);
-
-        req.write(postData);
-        req.end();
+        }, postData);
     },
-    setEffect(id) {
+    setEffect(data) {
         if (!this.sessionid) {
             return console.error("Error: Chroma editing is not active");
         }
-        const postData = JSON.stringify({ id });
-
-        const req = http.request({
-            hostname: "localhost",
-            port: this.sessionid,
-            path: "/chromasdk/effect",
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "Content-Length": postData.length
-            }
-        }).on("error", console.error);
-
-        req.write(postData);
-        req.end();
+        setTimeout(() => {
+            const postData = JSON.stringify({ id: data.id });
+            httpRequest({
+                hostname: "localhost",
+                port: this.sessionid,
+                path: "/chromasdk/effect",
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Content-Length": postData.length
+                }
+            }, postData);
+        }, 600);
     }
 };
