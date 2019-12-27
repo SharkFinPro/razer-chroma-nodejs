@@ -4,21 +4,22 @@ const httpRequest = (params, postData) => {
     return new Promise((resolve, reject) => {
         const req = http.request(params, (res) => {
             if (res.statusCode < 200 || res.statusCode >= 300) {
-                return reject(new Error('statusCode=' + res.statusCode));
+                return reject(new Error("statusCode=" + res.statusCode));
             }
             const body = [];
-            res.on('data', (chunk) => {
+            res.on("data", (chunk) => {
                 body.push(chunk);
             });
 
-            res.on('end', () => {
+            res.on("end", () => {
                 resolve(JSON.parse(Buffer.concat(body).toString()));
             });
         });
 
-        req.on('error', (err) => {
+        req.on("error", (err) => {
             reject(err);
         });
+
         if (postData) {
             req.write(postData);
         }
@@ -28,13 +29,11 @@ const httpRequest = (params, postData) => {
 
 module.exports = {
     sendHeartbeat() {
-        if (!this.sessionid) {
-            return;
-        }
         this.heartbeat = setInterval(() => {
             if (!this.sessionid) {
                 return;
             }
+
             httpRequest({
                 hostname: "localhost",
                 port: this.sessionid,
@@ -64,7 +63,7 @@ module.exports = {
             "description": "This edits Razer Chroma effects using nodejs",
             "author": {
                 "name": "Alex Martin",
-                "contact": "https://github.com/sharkfinpro"
+                "contact": "https://github.com/SharkFinPro"
             },
             "device_supported": [
                 "keyboard",
@@ -84,7 +83,8 @@ module.exports = {
         if (!this.sessionid) {
             return console.error("Error: Chroma editing is not active");
         }
-        this.heartbeat = clearInterval(this.heartbeat);
+
+        clearInterval(this.heartbeat);
 
         httpRequest({
             hostname: "localhost",
@@ -117,6 +117,7 @@ module.exports = {
         if (!this.sessionid) {
             return console.error("Error: Chroma editing is not active");
         }
+
         const postData = this.getEffectData(effect, param);
 
         return httpRequest({
@@ -134,6 +135,7 @@ module.exports = {
         if (!this.sessionid) {
             return console.error("Error: Chroma editing is not active");
         }
+
         setTimeout(() => {
             const postData = JSON.stringify({ id: data.id });
             httpRequest({
@@ -146,6 +148,6 @@ module.exports = {
                     "Content-Length": postData.length
                 }
             }, postData);
-        }, 600);
+        }, 700);
     }
 };
