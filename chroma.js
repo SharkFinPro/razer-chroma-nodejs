@@ -30,8 +30,8 @@ module.exports = {
             "title": "Razer Chroma nodejs Editor",
             "description": "This edits Razer Chroma effects using nodejs",
             "author": {
-                "name": "",
-                "contact": ""
+                "name": "Alex Martin",
+                "contact": "https://github.com/sharkfinpro"
             },
             "device_supported": [
                 "keyboard",
@@ -117,9 +117,9 @@ module.exports = {
     },
     createEffect(type, effect, param) {
         if (!this.sessionid) {
-            return;
+            return console.error("Error: Chroma editing is not active");
         }
-        let postData = this.getEffectData(effect, param);
+        const postData = this.getEffectData(effect, param);
 
         const req = http.request({
             hostname: "localhost",
@@ -142,7 +142,7 @@ module.exports = {
     },
     setEffect(id) {
         if (!this.sessionid) {
-            return;
+            return console.error("Error: Chroma editing is not active");
         }
         const postData = JSON.stringify({
             "id": id
