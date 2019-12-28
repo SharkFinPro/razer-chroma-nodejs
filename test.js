@@ -1,23 +1,26 @@
-const Chroma = require("./chroma.js");
+const Chroma = require("./chroma.js"),
+    MousepadEffects = require("./mousepadEffects.js"),
+    MouseEffects = require("./mouseEffects.js"),
+    HeadsetEffects = require("./headsetEffects.js");
 
 // Initialize Chroma
-Chroma.init(async () => {
+Chroma.init(() => {
     console.log("Chroma Editing Started");
-    // SINGLE-USE: Set mouse color to Yellow (BGR Format)
-    Chroma.createEffect("mouse", "CHROMA_STATIC", 0X00FFFF).then((effect) => {
-        Chroma.setEffect(effect);
-    });
 
-    // MULTI-USE: Set mousepad color to Red (BGR Format)
-    const mousepadEffect = await Chroma.createEffect("mousepad", "CHROMA_STATIC", 0X0000FF);
-    Chroma.setEffect(mousepadEffect);
+    // Create a wave effect on the mousepad
+    const mousepadEffect = MousepadEffects.wave(0);
 
-    // MULTI-USE: Set headset color to Blue (BGR Format)
-    const headsetEffect = await Chroma.createEffect("headset", "CHROMA_STATIC", 0XFF0000);
-    Chroma.setEffect(headsetEffect);
+    // Set the mouse to green
+    const mouseEffect = MouseEffects.setColor(0x00FF00);
 
-    // Stop Chroma after 5 Seconds
+    // Set the headset to blue
+    const headsetEffect = HeadsetEffects.setColor(0xFF0000);
+
+    // Clear all effects and close Chroma after 5 seconds
     setTimeout(() => {
+        MousepadEffects.clear(mousepadEffect);
+        MouseEffects.clear(mouseEffect);
+        HeadsetEffects.clear(headsetEffect);
         Chroma.uninit(() => {
             console.log("Chroma Editing Stopped");
         });

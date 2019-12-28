@@ -76,7 +76,9 @@ module.exports = {
         })).then((data) => {
             this.sessionid = data.sessionid;
             this.sendHeartbeat();
-            callback();
+            if (callback) {
+                callback();
+            }
         });
     },
     uninit(callback) {
@@ -96,7 +98,9 @@ module.exports = {
             }
         }).then(() => {
             this.sessionid = undefined;
-            callback();
+            if (callback) {
+                callback();
+            }
         });
     },
     getEffectData(effect, param) {
@@ -130,9 +134,7 @@ module.exports = {
                     "Content-Length": postData.length
                 }
             }, postData).then((data) => {
-                setTimeout(() => {
-                    resolve(data);
-                }, 700);
+                resolve(data);
             }).catch((err) => {
                 reject(err);
             });
