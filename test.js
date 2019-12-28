@@ -3,15 +3,16 @@ const Chroma = require("./chroma.js");
 // Initialize Chroma
 Chroma.init(async () => {
     console.log("Chroma Editing Started");
-    // Set mouse color to Yellow (BGR Format)
-    const mouseEffect = await Chroma.createEffect("mouse", "CHROMA_STATIC", 0X00FFFF);
-    Chroma.setEffect(mouseEffect);
+    // SINGLE-USE: Set mouse color to Yellow (BGR Format)
+    Chroma.createEffect("mouse", "CHROMA_STATIC", 0X00FFFF).then((effect) => {
+        Chroma.setEffect(effect);
+    });
 
-    // Set mousepad color to Red (BGR Format)
+    // MULTI-USE: Set mousepad color to Red (BGR Format)
     const mousepadEffect = await Chroma.createEffect("mousepad", "CHROMA_STATIC", 0X0000FF);
     Chroma.setEffect(mousepadEffect);
 
-    // Set headset color to Blue (BGR Format)
+    // MULTI-USE: Set headset color to Blue (BGR Format)
     const headsetEffect = await Chroma.createEffect("headset", "CHROMA_STATIC", 0XFF0000);
     Chroma.setEffect(headsetEffect);
 

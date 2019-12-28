@@ -4,7 +4,7 @@ const httpRequest = (params, postData) => {
     return new Promise((resolve, reject) => {
         const req = http.request(params, (res) => {
             if (res.statusCode < 200 || res.statusCode >= 300) {
-                return reject(new Error("statusCode=" + res.statusCode));
+                return reject(new Error(`statusCode=${res.statusCode}`));
             }
             const body = [];
             res.on("data", (chunk) => {
@@ -119,35 +119,38 @@ module.exports = {
         }
 
         const postData = this.getEffectData(effect, param);
-
-        return httpRequest({
-            hostname: "localhost",
-            port: this.sessionid,
-            path: "/chromasdk/" + type,
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Content-Length": postData.length
-            }
-        }, postData);
+        return new Promise((resolve, reject) => {
+            httpRequest({
+                hostname: "localhost",
+                port: this.sessionid,
+                path: `/chromasdk/${type}`,
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Content-Length": postData.length
+                }
+            }, postData).then((data) => {
+                setTimeout(() => {
+                    resolve(data);
+                }, 700);
+            }).catch((err) => {
+                reject(err);
+            });
+      });
     },
     setEffect(data) {
         if (!this.sessionid) {
             return console.error("Error: Chroma editing is not active");
         }
 
-        setTimeout(() => {
-            const postData = JSON.stringify({ id: data.id });
-            httpRequest({
-                hostname: "localhost",
-                port: this.sessionid,
-                path: "/chromasdk/effect",
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Content-Length": postData.length
-                }
-            }, postData);
-        }, 700);
+        httpRequest({
+            hostname: "localhost",
+            port: this.sessionid,
+            path: "/chromasdk/effect",
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }, JSON.stringify({ id: data.id }));
     }
 };
