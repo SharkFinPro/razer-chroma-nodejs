@@ -15,7 +15,7 @@ module.exports = {
         headers: {
           "Content-Type": "application/json"
         }
-      });
+      }).catch(console.error);
     }, 1000);
   },
   init(callback) {
@@ -52,7 +52,7 @@ module.exports = {
       if (callback) {
         callback();
       }
-    });
+    }).catch(console.error);
   },
   uninit(callback) {
     if (!this.sessionid) {
@@ -74,7 +74,7 @@ module.exports = {
       if (callback) {
         callback();
       }
-    });
+    }).catch(console.error);
   },
   getEffectData(effect, param) {
     if (effect === "CHROMA_NONE") {
@@ -91,12 +91,13 @@ module.exports = {
     }
   },
   createEffect(type, effect, param) {
-    if (!this.sessionid) {
-      return console.error("Error: Chroma editing is not active");
-    }
-
-    const postData = this.getEffectData(effect, param);
     return new Promise((resolve, reject) => {
+      if (!this.sessionid) {
+        reject("Error: Chroma editing is not active");
+      }
+
+      const postData = this.getEffectData(effect, param);
+
       httpRequest({
           hostname: "localhost",
           port: this.sessionid,
@@ -126,6 +127,6 @@ module.exports = {
       headers: {
         "Content-Type": "application/json"
       }
-    }, JSON.stringify({ id: data.id }));
+    }, JSON.stringify({ id: data.id })).catch(console.error);
   }
 };
