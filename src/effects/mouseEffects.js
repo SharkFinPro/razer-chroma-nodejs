@@ -1,4 +1,4 @@
-const Chroma = require("./chroma.js"),
+const Chroma = require("../lib/chroma.js"),
     GlobalEffects = require("./globalEffects.js");
 
 module.exports = {

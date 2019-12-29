@@ -1,4 +1,4 @@
-const Chroma = require("./chroma.js"),
+const Chroma = require("../lib/chroma.js"),
     GlobalEffects = require("./globalEffects.js");
 
 module.exports = {
@@ -6,9 +6,9 @@ module.exports = {
         return GlobalEffects.clear(effect);
     },
     setColor(color) {
-        return GlobalEffects.setColor("chromalink", color);
+        return GlobalEffects.setColor("keyboard", color);
     },
     off() {
-        return GlobalEffects.off("chromalink");
+        return GlobalEffects.off("keyboard");
     }
 };
