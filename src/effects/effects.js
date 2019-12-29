@@ -30,20 +30,16 @@ module.exports = {
       data[2] = 0X8B00FF;
       data[1] = 0X8B00FF;
       data[0] = 0XFF0000;
-      if (dir === 0) {
-        return setInterval(async () => {
+      return setInterval(async () => {
+        if (dir === 0) {
           data.unshift([]);
           data[0] = data[15];
           data.pop();
-          await Chroma.createEffect("mousepad", "CHROMA_CUSTOM", data).then((effect) => {
-            Chroma.setEffect(effect);
-          }).catch(console.error);
-        }, 50);
-      }
-      return setInterval(async () => {
-        data.push(data[0]);
-        data.shift();
-        const mousepadEffect = await Chroma.createEffect("mousepad", "CHROMA_CUSTOM", data).then((effect) => {
+        } else {
+          data.push(data[0]);
+          data.shift();
+        }
+        await Chroma.createEffect("mousepad", "CHROMA_CUSTOM", data).then((effect) => {
           Chroma.setEffect(effect);
         }).catch(console.error);
       }, 50);
