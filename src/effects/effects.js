@@ -2,6 +2,7 @@ const Chroma = require("../lib/chroma.js"),
   GlobalEffects = require("./globalEffects.js");
 
 module.exports = {
+  GlobalEffects: GlobalEffects,
   MouseEffects: {
     clear: GlobalEffects.clear,
     setColor(color) {
