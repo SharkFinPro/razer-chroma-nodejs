@@ -1,21 +1,14 @@
-const Chroma = require("./chroma.js");
+const Chroma = require("./chroma.js"),
+    GlobalEffects = require("./globalEffects.js");
 
 module.exports = {
     clear(effect) {
-        return clearInterval(effect);
+        return GlobalEffects.clear(effect);
     },
     setColor(color) {
-        return setInterval(async () => {
-            await Chroma.createEffect("headset", "CHROMA_STATIC", color).then((effect) => {
-                Chroma.setEffect(effect);
-            });
-        }, 50);
+        return GlobalEffects.setColor("headset", color);
     },
     off() {
-        return setInterval(async () => {
-            await Chroma.createEffect("headset", "CHROMA_NONE").then((effect) => {
-                Chroma.setEffect(effect);
-            });
-        }, 50);
+        return GlobalEffects.off("headset");
     }
 };

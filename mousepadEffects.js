@@ -1,8 +1,9 @@
-const Chroma = require("./chroma.js");
+const Chroma = require("./chroma.js"),
+    GlobalEffects = require("./globalEffects.js");
 
 module.exports = {
     clear(effect) {
-        return clearInterval(effect);
+        return GlobalEffects.clear(effect);
     },
     wave(dir) {
         const data = [];
@@ -23,10 +24,9 @@ module.exports = {
         data[0] = 0XFF0000;
         if (dir === 0) {
             return setInterval(async () => {
-                data.unshift("");
+                data.unshift([]);
                 data[0] = data[15];
                 data.pop();
-                const e = data[0];
                 await Chroma.createEffect("mousepad", "CHROMA_CUSTOM", data).then((effect) => {
                     Chroma.setEffect(effect);
                 });
@@ -35,24 +35,15 @@ module.exports = {
         return setInterval(async () => {
             data.push(data[0]);
             data.shift();
-            const e = data[0];
             const mousepadEffect = await Chroma.createEffect("mousepad", "CHROMA_CUSTOM", data).then((effect) => {
                 Chroma.setEffect(effect);
             });
         }, 50);
     },
     setColor(color) {
-        return setInterval(async () => {
-            await Chroma.createEffect("mousepad", "CHROMA_STATIC", color).then((effect) => {
-                Chroma.setEffect(effect);
-            });
-        }, 50);
+        return GlobalEffects.setColor("mousepad", color);
     },
     off() {
-        return setInterval(async () => {
-            await Chroma.createEffect("mousepad", "CHROMA_NONE").then((effect) => {
-                Chroma.setEffect(effect);
-            });
-        }, 50);
+        return GlobalEffects.off("mousepad");
     }
 };
