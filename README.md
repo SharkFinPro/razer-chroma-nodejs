@@ -1,6 +1,6 @@
-# Razer Chroma node.js
+# Razer Chroma Node.js
 
-Razer Chroma node.js allows you to control the lights on Razer Chroma devices using node.js
+Razer Chroma Node.js allows you to control the lights on Razer Chroma devices using node.js
 
 ## Installation
 
@@ -33,7 +33,7 @@ Chroma.util.init(() => {
 });
 ```
 
-### Initialize & uninitialize
+### Initialize & Uninitialize
 
 `Chroma.util.init(callback);` Must be called to do anything with Chroma, Chroma is ready when callback is called.
 
@@ -44,13 +44,13 @@ Chroma.util.init(() => {
 `Chroma.effects`
 
 **All Devices**:
- - `.setColor(color)` Change static color
- - `.off()` Turn the lights off
+- `.setColor(color)` Change static color
+- `.off()` Turn the lights off
 
 **Mousepad**:
- - `.wave(direction)` Create a wave effect around the mousepad (0 or 1 for direction)
+- `.wave(direction)` Create a wave effect around the mousepad (0 or 1 for direction)
 
-### Clear effects
+### Clear Effects
 
 `Chroma.effects.type.clear(effect)` Clear specified effect, must be a looped effect as static effects do not need to be cleared
 

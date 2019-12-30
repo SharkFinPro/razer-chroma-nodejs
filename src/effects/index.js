@@ -1,5 +1,5 @@
 const ItemEffects = require("./itemEffects.js"),
-  MousepadEffects = require("./mousepadEffects.js")
+  MousepadEffects = require("./mousepadEffects.js");
 
 module.exports = {
   mouse: new ItemEffects("mouse"),
