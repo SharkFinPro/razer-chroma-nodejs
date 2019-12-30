@@ -44,11 +44,11 @@ Chroma.util.init(() => {
 `Chroma.effects`
 
 **All Devices**:
-- `.setColor(color)` Change static color
-- `.off()` Turn the lights off
+-  `.setColor(color)` Change static color
+-  `.off()` Turn the lights off
 
 **Mousepad**:
-- `.wave(direction)` Create a wave effect around the mousepad (0 or 1 for direction)
+-  `.wave(direction)` Create a wave effect around the mousepad (0 or 1 for direction)
 
 ### Clear Effects
 
