@@ -81,10 +81,10 @@ module.exports = {
       return JSON.stringify({ effect });
     } else if (effect === "CHROMA_STATIC") {
       return JSON.stringify({
-          effect,
-          "param": {
-              "color": param
-          }
+        effect,
+        "param": {
+          "color": param
+        }
       });
     } else {
       return JSON.stringify({ effect, param });
@@ -99,14 +99,14 @@ module.exports = {
       const postData = this.getEffectData(effect, param);
 
       httpRequest({
-          hostname: "localhost",
-          port: this.sessionid,
-          path: `/chromasdk/${type}`,
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json",
-              "Content-Length": postData.length
-          }
+        hostname: "localhost",
+        port: this.sessionid,
+        path: `/chromasdk/${type}`,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Length": postData.length
+        }
       }, postData).then((data) => {
         resolve(data);
       }).catch((err) => {

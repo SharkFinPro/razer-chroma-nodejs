@@ -5,21 +5,25 @@ module.exports = class Effect {
     this.item = item;
     this.type = type;
     this.data = data;
-    this.set();
+    this.createEffect();
   }
 
-  async set() {
+  setEffect() {
+    Chroma.setEffect(this.effect);
+  }
+
+  createEffect() {
     if (!Chroma.sessionid) {
       return;
     }
 
-    await Chroma.createEffect(this.item, this.type, this.data).then((effect) => {
+    Chroma.createEffect(this.item, this.type, this.data).then((effect) => {
       setTimeout(() => {
         if (!Chroma.sessionid) {
           return;
         }
         this.effect = effect;
-        Chroma.setEffect(effect);
+        this.setEffect();
       }, 700);
     }).catch(console.error);
   }
