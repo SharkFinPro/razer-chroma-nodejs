@@ -1,15 +1,11 @@
-const MouseEffects = require("./mouseEffects.js"),
-  MousepadEffects = require("./mousepadEffects.js"),
-  HeadsetEffects = require("./HeadsetEffects.js"),
-  KeyboardEffects = require("./KeyboardEffects.js"),
-  KeypadEffects = require("./KeypadEffects.js"),
-  ChromalinkEffects = require("./ChromalinkEffects.js");
+const ItemEffects = require("./itemEffects.js"),
+  MousepadEffects = require("./mousepadEffects.js")
 
 module.exports = {
-  mouse: new MouseEffects(),
+  mouse: new ItemEffects("mouse"),
   mousepad: new MousepadEffects(),
-  headset: new HeadsetEffects(),
-  keyboard: new KeyboardEffects(),
-  keypad: new KeypadEffects(),
-  chromalink: new ChromalinkEffects()
+  headset: new ItemEffects("headset"),
+  keyboard: new ItemEffects("keyboard"),
+  keypad: new ItemEffects("keypad"),
+  chromalink: new ItemEffects("chromalink")
 };
