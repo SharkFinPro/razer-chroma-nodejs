@@ -13,13 +13,13 @@ module.exports = class Effect {
   }
 
   createEffect() {
-    if (!Chroma.isActive(true)) {
+    if (Chroma.isNotActive(true)) {
       return;
     }
 
     Chroma.createEffect(this.item, this.type, this.data).then((effect) => {
       setTimeout(() => {
-        if (!Chroma.isActive(true)) {
+        if (Chroma.isNotActive(true)) {
           return;
         }
         this.effect = effect;

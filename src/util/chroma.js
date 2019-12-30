@@ -1,18 +1,27 @@
 const httpRequest = require("./httpRequest.js");
 
 module.exports = {
-  isActive(hideError) {
+  isNotActive(hideError) {
     if (this.sessionid) {
-      return true;
+      return false;
     }
     if (!hideError) {
       console.error("Error: Chroma editing is not active");
     }
-    return;
+    return true;
+  },
+  isActive(hideError) {
+    if (!this.sessionid) {
+      return false;
+    }
+    if (!hideError) {
+      console.error("Error: Chroma editing is already active");
+    }
+    return true;
   },
   sendHeartbeat() {
     this.heartbeat = setInterval(() => {
-      if (!this.isActive()) {
+      if (this.isNotActive()) {
         return;
       }
 
@@ -28,8 +37,8 @@ module.exports = {
     }, 1000);
   },
   init(callback) {
-    if (this.sessionid) {
-      return console.error("Error: Chroma editing is already active");
+    if (this.isActive()) {
+      return;
     }
 
     httpRequest({
@@ -64,7 +73,7 @@ module.exports = {
     }).catch(console.error);
   },
   uninit(callback) {
-    if (!this.isActive()) {
+    if (this.isNotActive()) {
       return;
     }
 
@@ -101,7 +110,7 @@ module.exports = {
   },
   createEffect(type, effect, param) {
     return new Promise((resolve, reject) => {
-      if (!this.isActive()) {
+      if (this.isNotActive()) {
         return;
       }
 
@@ -124,7 +133,7 @@ module.exports = {
     });
   },
   setEffect(id) {
-    if (!this.isActive()) {
+    if (this.isNotActive()) {
       return;
     }
 
