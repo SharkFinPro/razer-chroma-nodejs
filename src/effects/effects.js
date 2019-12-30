@@ -3,7 +3,7 @@ const Chroma = require("../lib/chroma.js"),
 
 module.exports = {
   GlobalEffects: GlobalEffects,
-  MouseEffects: {
+  mouse: {
     clear: GlobalEffects.clear,
     setColor(color) {
       return GlobalEffects.setColor("mouse", color);
@@ -12,7 +12,7 @@ module.exports = {
       return GlobalEffects.off("mouse");
     }
   },
-  MousepadEffects: {
+  mousepad: {
     clear: GlobalEffects.clear,
     wave(dir) {
       const data = [];
@@ -52,7 +52,7 @@ module.exports = {
       return GlobalEffects.off("mousepad");
     }
   },
-  HeadsetEffects: {
+  headset: {
     clear: GlobalEffects.clear,
     setColor(color) {
       return GlobalEffects.setColor("headset", color);
@@ -61,7 +61,7 @@ module.exports = {
       return GlobalEffects.off("headset");
     }
   },
-  KeyboardEffects: {
+  keyboard: {
     clear: GlobalEffects.clear,
     setColor(color) {
       return GlobalEffects.setColor("keyboard", color);
@@ -70,7 +70,7 @@ module.exports = {
       return GlobalEffects.off("keyboard");
     }
   },
-  KeypadEffects: {
+  keypad: {
     clear: GlobalEffects.clear,
     setColor(color) {
       return GlobalEffects.setColor("keypad", color);
@@ -79,7 +79,7 @@ module.exports = {
       return GlobalEffects.off("keypad");
     }
   },
-  ChromalinkEffects: {
+  chromalink: {
     clear: GlobalEffects.clear,
     setColor(color) {
       return GlobalEffects.setColor("chromalink", color);
