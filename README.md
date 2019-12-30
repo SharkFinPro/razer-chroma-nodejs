@@ -14,15 +14,15 @@ npm install razer-chroma-nodejs
 
 ### Initialize/uninitialize
 
-`Chroma.init(callback);`: Must be called to do anything with Chroma, Chroma is ready when callback is called.
+`Chroma.util.init(callback);`: Must be called to do anything with Chroma, Chroma is ready when callback is called.
 
-`Chroma.uninit(callback);`: Must be called to close Chroma, all custom looped effects must be cleared before calling this. Chroma is closed when callback is called.
+`Chroma.util.uninit(callback);`: Must be called to close Chroma, all custom looped effects must be cleared before calling this. Chroma is closed when callback is called.
 
 
 ### Example
 
 ```javascript
-const Chroma = require("../src/index.js");
+const Chroma = require("razer-chroma-nodejs");
 
 // Initialize Chroma
 Chroma.util.init(() => {
