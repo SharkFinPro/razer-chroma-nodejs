@@ -52,5 +52,9 @@ Chroma.util.init(() => {
 **Mousepad**:
  - wave(direction): Create a wave effect around the mousepad (0 or 1 for direction)
 
+### Clear effects
+
+`Chroma.effects.type.clear(effect)`: Clear specified effect, must be a looped effect as static effects do not need to be cleared 
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
