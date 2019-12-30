@@ -1,4 +1,4 @@
 module.exports = {
-  util: require("./lib/chroma.js"),
+  util: require("./util/chroma.js"),
   effects: require("./effects/index.js")
 };

@@ -1,4 +1,4 @@
-const Chroma = require("../lib/chroma.js");
+const Chroma = require("../util/chroma.js");
 
 module.exports = class Effect {
   constructor(item, type, data) {
