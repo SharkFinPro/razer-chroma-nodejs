@@ -12,13 +12,6 @@ npm install razer-chroma-nodejs
 
 ## Usage
 
-### Initialize/uninitialize
-
-`Chroma.util.init(callback);`: Must be called to do anything with Chroma, Chroma is ready when callback is called.
-
-`Chroma.util.uninit(callback);`: Must be called to close Chroma, all custom looped effects must be cleared before calling this. Chroma is closed when callback is called.
-
-
 ### Example
 
 ```javascript
@@ -29,7 +22,7 @@ Chroma.util.init(() => {
   console.log("Chroma Editing Started");
 
   // Set the mouse color to green
-  const mouseEffect = Chroma.effects.mouse.setColor(0x00FF00);
+  const mouseEffect = Chroma.effects.mouse.setColor(Chroma.colors.GREEN);
 
   // Close Chroma after 5 seconds
   setTimeout(() => {
@@ -40,21 +33,26 @@ Chroma.util.init(() => {
 });
 ```
 
-## Effects
+### Initialize & uninitialize
+
+`Chroma.util.init(callback);` Must be called to do anything with Chroma, Chroma is ready when callback is called.
+
+`Chroma.util.uninit(callback);` Must be called to close Chroma, all custom looped effects must be cleared before calling this. Chroma is closed when callback is called.
+
+### Effects
 
 `Chroma.effects`
 
 **All Devices**:
- - setColor(color): Change static color
- - off(): Turn the lights off
- - clear(): Clear custom looped effects
+ - `.setColor(color)` Change static color
+ - `.off()` Turn the lights off
 
 **Mousepad**:
- - wave(direction): Create a wave effect around the mousepad (0 or 1 for direction)
+ - `.wave(direction)` Create a wave effect around the mousepad (0 or 1 for direction)
 
 ### Clear effects
 
-`Chroma.effects.type.clear(effect)`: Clear specified effect, must be a looped effect as static effects do not need to be cleared 
+`Chroma.effects.type.clear(effect)` Clear specified effect, must be a looped effect as static effects do not need to be cleared
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
