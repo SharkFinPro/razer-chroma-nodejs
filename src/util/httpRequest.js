@@ -4,8 +4,9 @@ module.exports = (params, postData) => {
   return new Promise((resolve, reject) => {
     const req = http.request(params, (res) => {
       if (res.statusCode < 200 || res.statusCode >= 300) {
-        return reject(new Error(`statusCode=${res.statusCode}`));
+        reject(new Error(`statusCode=${res.statusCode}`));
       }
+
       const body = [];
       res.on("data", (chunk) => {
         body.push(chunk);

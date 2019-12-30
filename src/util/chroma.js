@@ -6,7 +6,7 @@ module.exports = {
       return false;
     }
     if (!hideError) {
-      console.error("Error: Chroma editing is not active");
+      console.error(new Error("Chroma editing is not active"));
     }
     return true;
   },
@@ -15,7 +15,7 @@ module.exports = {
       return false;
     }
     if (!hideError) {
-      console.error("Error: Chroma editing is already active");
+      console.error(new Error("Chroma editing is already active"));
     }
     return true;
   },

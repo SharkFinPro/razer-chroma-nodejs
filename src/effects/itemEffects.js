@@ -7,7 +7,7 @@ module.exports = class ItemEffect {
 
   clear(effect) {
     if (typeof(effect) !== "object") {
-      return console.error("Error: Cannot clear this effect type");
+      return console.error(new Error("Cannot clear this effect type"));
     }
     clearInterval(effect);
   }
