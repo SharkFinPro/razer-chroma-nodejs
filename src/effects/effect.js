@@ -13,13 +13,13 @@ module.exports = class Effect {
   }
 
   createEffect() {
-    if (!Chroma.sessionid) {
+    if (!Chroma.isActive(true)) {
       return;
     }
 
     Chroma.createEffect(this.item, this.type, this.data).then((effect) => {
       setTimeout(() => {
-        if (!Chroma.sessionid) {
+        if (!Chroma.isActive(true)) {
           return;
         }
         this.effect = effect;

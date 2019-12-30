@@ -1,9 +1,18 @@
 const httpRequest = require("./httpRequest.js");
 
 module.exports = {
+  isActive(hideError) {
+    if (this.sessionid) {
+      return true;
+    }
+    if (!hideError) {
+      console.error("Error: Chroma editing is not active");
+    }
+    return;
+  },
   sendHeartbeat() {
     this.heartbeat = setInterval(() => {
-      if (!this.sessionid) {
+      if (!this.isActive()) {
         return;
       }
 
@@ -55,8 +64,8 @@ module.exports = {
     }).catch(console.error);
   },
   uninit(callback) {
-    if (!this.sessionid) {
-      return console.error("Error: Chroma editing is not active");
+    if (!this.isActive()) {
+      return;
     }
 
     clearInterval(this.heartbeat);
@@ -92,8 +101,8 @@ module.exports = {
   },
   createEffect(type, effect, param) {
     return new Promise((resolve, reject) => {
-      if (!this.sessionid) {
-        reject("Error: Chroma editing is not active");
+      if (!this.isActive()) {
+        return;
       }
 
       const postData = this.getEffectData(effect, param);
@@ -108,15 +117,15 @@ module.exports = {
           "Content-Length": postData.length
         }
       }, postData).then((data) => {
-        resolve(data);
+        resolve(data.id);
       }).catch((err) => {
         reject(err);
       });
     });
   },
-  setEffect(data) {
-    if (!this.sessionid) {
-      return console.error("Error: Chroma editing is not active");
+  setEffect(id) {
+    if (!this.isActive()) {
+      return;
     }
 
     httpRequest({
@@ -127,6 +136,6 @@ module.exports = {
       headers: {
         "Content-Type": "application/json"
       }
-    }, JSON.stringify({ id: data.id })).catch(console.error);
+    }, JSON.stringify({ id })).catch(console.error);
   }
 };
