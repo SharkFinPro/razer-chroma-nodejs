@@ -1,5 +1,4 @@
-const ItemEffects = require("./itemEffects.js"),
-  Effect = require("./effect.js");
+const ItemEffects = require("./itemEffects.js");
 
 module.exports = class MousepadEffects extends ItemEffects {
   constructor() {
@@ -32,7 +31,7 @@ module.exports = class MousepadEffects extends ItemEffects {
         data.push(data[0]);
         data.shift();
       }
-      const effect = new Effect("mousepad", "CHROMA_CUSTOM", data);
+      this.setEffect("CHROMA_CUSTOM", data);
     }, 50);
   }
 };

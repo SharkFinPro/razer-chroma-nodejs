@@ -12,11 +12,15 @@ module.exports = class ItemEffect {
     return clearInterval(effect);
   }
 
+  setEffect(effect, data) {
+    this.effect = new Effect(this.type, effect, data);
+  }
+
   setColor(color) {
-    const effect = new Effect(this.type, "CHROMA_STATIC", color);
+    this.setEffect("CHROMA_STATIC", color);
   }
 
   off() {
-    const effect = new Effect(this.type, "CHROMA_NONE");
+    this.setEffect("CHROMA_NONE");
   }
 };
