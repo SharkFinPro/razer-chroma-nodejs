@@ -14,5 +14,6 @@ module.exports = {
   SILVER: 0xc0c0c0,
   TEAL: 0x808000,
   WHITE: 0xffffff,
-  YELLOW: 0x00ffff
+  YELLOW: 0x00ffff,
+  ORANGE: 0x00a5ff
 };

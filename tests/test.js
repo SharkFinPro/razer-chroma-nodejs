@@ -10,7 +10,7 @@ Chroma.util.init(() => {
   // Set the mouse to green
   Chroma.effects.mouse.setColor(Chroma.colors.GREEN);
 
-  // Set the headset off
+  // Turn the headset off
   Chroma.effects.headset.off();
 
   // Set the keyboard to red
