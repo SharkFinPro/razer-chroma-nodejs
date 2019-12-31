@@ -1,6 +1,6 @@
 {
   "name": "razer-chroma-nodejs",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Change Razer Chroma lighting effects using nodejs",
   "main": "src/index.js",
   "directories": {
@@ -13,6 +13,13 @@
     "type": "git",
     "url": "git+https://github.com/SharkFinPro/razer-chroma-nodejs.git"
   },
+  "keywords": [
+    "razer",
+    "chroma",
+    "sdk",
+    "rest",
+    "api"
+  ],
   "author": "Alex Martin",
   "license": "MIT",
   "bugs": {
