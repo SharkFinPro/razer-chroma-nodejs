@@ -2,7 +2,7 @@
 
 Razer Chroma Node.js allows you to control the lights on Razer Chroma devices using node.js
 
-[![Build Status](https://travis-ci.org/SharkFinPro/razer-chroma-nodejs.svg?branch=master)](https://travis-ci.org/SharkFinPro/razer-chroma-nodejs) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/87e642999aa543a989cd09d91d3d7973)](https://www.codacy.com/manual/SharkFinPro/razer-chroma-nodejs?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=SharkFinPro/razer-chroma-nodejs&amp;utm_campaign=Badge_Grade)
+[![Npm Version](https://img.shields.io/npm/v/razer-chroma-nodejs.svg?maxAge=3600)](https://www.npmjs.com/package/razer-chroma-nodejs) [![Build Status](https://travis-ci.org/SharkFinPro/razer-chroma-nodejs.svg?branch=master)](https://travis-ci.org/SharkFinPro/razer-chroma-nodejs) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/87e642999aa543a989cd09d91d3d7973)](https://www.codacy.com/manual/SharkFinPro/razer-chroma-nodejs?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=SharkFinPro/razer-chroma-nodejs&amp;utm_campaign=Badge_Grade)
 
 ## Installation
 
