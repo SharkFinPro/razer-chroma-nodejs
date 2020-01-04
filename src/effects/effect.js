@@ -8,10 +8,12 @@ module.exports = class Effect {
     this.createEffect();
   }
 
+  // Apply the effect
   setEffect() {
     Chroma.setEffect(this.effect);
   }
 
+  // Create the effect
   createEffect() {
     if (Chroma.isNotActive(true)) {
       return;

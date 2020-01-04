@@ -1,6 +1,7 @@
 const httpRequest = require("./httpRequest.js");
 
 module.exports = {
+  // Check if Chroma is NOT active
   isNotActive(hideError) {
     if (this.sessionid) {
       return false;
@@ -10,6 +11,7 @@ module.exports = {
     }
     return true;
   },
+  // Check if Chroma IS Active
   isActive(hideError) {
     if (!this.sessionid) {
       return false;
@@ -19,6 +21,7 @@ module.exports = {
     }
     return true;
   },
+  // Set interval that runs every second sending a heartbeat to the Chroma Rest API
   sendHeartbeat() {
     this.heartbeat = setInterval(() => {
       if (this.isNotActive()) {
@@ -36,6 +39,7 @@ module.exports = {
       }).catch(console.error);
     }, 1000);
   },
+  // Initiate the connection to Chroma
   init(callback) {
     if (this.isActive()) {
       return;
@@ -72,6 +76,7 @@ module.exports = {
       }
     }).catch(console.error);
   },
+  // End the connection with Chroma
   uninit(callback) {
     if (this.isNotActive()) {
       return;
@@ -94,6 +99,7 @@ module.exports = {
       }
     }).catch(console.error);
   },
+  // Get effect data parameters
   getEffectData(effect, param) {
     if (effect === "CHROMA_NONE") {
       return JSON.stringify({ effect });
@@ -108,6 +114,7 @@ module.exports = {
       return JSON.stringify({ effect, param });
     }
   },
+  // Create effect to be applied later
   createEffect(type, effect, param) {
     return new Promise((resolve, reject) => {
       if (this.isNotActive()) {
@@ -132,6 +139,7 @@ module.exports = {
       });
     });
   },
+  // Apply an effect
   setEffect(id) {
     if (this.isNotActive()) {
       return;
