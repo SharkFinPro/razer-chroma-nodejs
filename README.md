@@ -48,6 +48,7 @@ Chroma.util.init(() => {
 **All Devices**:
 - `.setColor(color)` Change static color
 - `.off()` Turn the lights off
+- `.all`  to use these on all devices at once
 
 **Mousepad**:
 - `.wave(direction)` Create a wave effect around the mousepad (0 or 1 for direction)
