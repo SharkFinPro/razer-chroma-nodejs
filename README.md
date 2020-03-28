@@ -47,7 +47,7 @@ Chroma.util.init(() => {
 
 **Devices**
 - `Chroma.effects.mouse` Mouse specific effects
-- `Chroma.effects.mosuepad` Mousepad specific effects
+- `Chroma.effects.mousepad` Mousepad specific effects
 - `Chroma.effects.headset` Headset specific effects
 - `Chroma.effects.keyboard` Keyboard specific effects
 - `Chroma.effects.keypad` Keypad specific effects
