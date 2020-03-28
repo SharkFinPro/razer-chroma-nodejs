@@ -24,7 +24,7 @@ Chroma.util.init(() => {
   console.log("Chroma Editing Started");
 
   // Set the mouse color to green
-  const mouseEffect = Chroma.effects.mouse.setColor(Chroma.colors.GREEN);
+  Chroma.effects.mouse.setColor(Chroma.colors.GREEN);
 
   // Close Chroma after 5 seconds
   setTimeout(() => {
@@ -45,10 +45,18 @@ Chroma.util.init(() => {
 
 `Chroma.effects`
 
+**Devices**
+- `Chroma.effects.mouse` Mouse specific effects
+- `Chroma.effects.mosuepad` Mousepad specific effects
+- `Chroma.effects.headset` Headset specific effects
+- `Chroma.effects.keyboard` Keyboard specific effects
+- `Chroma.effects.keypad` Keypad specific effects
+- `Chroma.effects.chromalink` Chromalink specific effects
+- `Chroma.effects.all` Effects for all devices
+
 **All Devices**:
 - `.setColor(color)` Change static color
 - `.off()` Turn the lights off
-- `.all`  to use these on all devices at once
 
 **Mousepad**:
 - `.wave(direction)` Create a wave effect around the mousepad (0 or 1 for direction)

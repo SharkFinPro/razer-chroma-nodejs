@@ -1,6 +1,6 @@
 const Effect = require("./effect.js");
 
-module.exports = class ItemEffect {
+module.exports = class AllEffects {
   // Apply Effect
   setEffect(effect, data) {
     this.effect = new Effect("mouse", effect, data);
