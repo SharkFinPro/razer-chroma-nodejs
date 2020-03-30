@@ -14,7 +14,7 @@ Chroma.util.init(() => {
   Chroma.effects.headset.off();
 
   // Set the keyboard to red
-  Chroma.effects.keyboard.setColor(Chroma.colors.RED);
+  Chroma.effects.keyboard.setColor(Chroma.colors.rgb(255, 0, 0));
 
   // Set the keypad to yellow
   Chroma.effects.keypad.setColor(Chroma.colors.YELLOW);

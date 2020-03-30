@@ -45,6 +45,10 @@ Chroma.util.init(() => {
 
 `Chroma.effects`
 
+**Colors**
+ - `Chroma.colors` List of pre defined Colors
+ - `Chroma.colors.rgb(r, g, b)` Use an RGB color
+
 **Devices**
 - `Chroma.effects.mouse` Mouse specific effects
 - `Chroma.effects.mousepad` Mousepad specific effects

@@ -15,5 +15,8 @@ module.exports = {
   TEAL: 0x808000,
   WHITE: 0xffffff,
   YELLOW: 0x00ffff,
-  ORANGE: 0x00a5ff
+  ORANGE: 0x00a5ff,
+  rgb: (r, g, b) => {
+    return (b << 16) + (g << 8) + r;
+  }
 };
