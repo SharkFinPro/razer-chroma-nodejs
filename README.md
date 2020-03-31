@@ -63,7 +63,11 @@ Chroma.util.init(() => {
 - `.off()` Turn the lights off
 
 **Mousepad**:
-- `.wave(direction)` Create a wave effect around the mousepad (0 or 1 for direction)
+- `.wave(direction)` Create a wave effect around the mousepad (0 or 1 for direction). This is looped and needs to be cleared
+
+**Keyboard**:
+- `gaming` Sets WASD & arrow keys as white, turns off all other lights
+- `random` Randomizes every key's color. This is looped and needs to be cleared
 
 ### Clear Effects
 

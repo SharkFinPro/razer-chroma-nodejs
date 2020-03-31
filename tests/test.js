@@ -13,8 +13,8 @@ Chroma.util.init(() => {
   // Turn the headset off
   Chroma.effects.headset.off();
 
-  // Set the keyboard to red
-  Chroma.effects.keyboard.setColor(Chroma.colors.rgb(255, 0, 0));
+  // Randomize colors across the keyboard
+  const keyboardEffect = Chroma.effects.keyboard.random();
 
   // Set the keypad to yellow
   Chroma.effects.keypad.setColor(Chroma.colors.YELLOW);
@@ -25,6 +25,7 @@ Chroma.util.init(() => {
   // Clear all effects and close Chroma after 5 seconds
   setTimeout(() => {
     Chroma.effects.mousepad.clear(mousepadEffect);
+    Chroma.effects.keyboard.clear(keyboardEffect);
     Chroma.util.uninit(() => {
       console.log("Chroma Editing Stopped");
     });
