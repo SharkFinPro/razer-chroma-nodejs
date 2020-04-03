@@ -1,4 +1,4 @@
-const DeviceEffects = require("./itemEffects.js"),
+const DeviceEffects = require("./deviceEffects.js"),
   MousepadEffects = require("./mousepadEffects.js"),
   KeyboardEffects = require("./keyboardEffects.js");
 

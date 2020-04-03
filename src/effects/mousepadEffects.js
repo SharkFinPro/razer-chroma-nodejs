@@ -1,4 +1,4 @@
-const ItemEffects = require("./itemEffects.js");
+const ItemEffects = require("./deviceEffects.js");
 
 module.exports = class MousepadEffects extends ItemEffects {
   constructor() {
