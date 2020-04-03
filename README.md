@@ -43,11 +43,11 @@ Chroma.util.init(() => {
 
 ### Effects
 
-##### **Colors**
- - `Chroma.colors` List of pre defined Colors
- - `Chroma.colors.rgb(r, g, b)` Use an RGB color
+**Colors**
+- `Chroma.colors` List of pre defined Colors
+- `Chroma.colors.rgb(r, g, b)` Use an RGB color
 
-##### **Devices**
+**Devices**
 - `Chroma.effects.mouse` Mouse specific effects
 - `Chroma.effects.mousepad` Mousepad specific effects
 - `Chroma.effects.headset` Headset specific effects
@@ -56,14 +56,14 @@ Chroma.util.init(() => {
 - `Chroma.effects.chromalink` Chromalink specific effects
 - `Chroma.effects.all` Effects for all devices
 
-##### **All Devices**:
+**All Devices**:
 - `.setColor(color)` Change static color
 - `.off()` Turn the lights off
 
-##### **Mousepad**:
+**Mousepad**:
 - `.wave(direction)` Create a wave effect around the mousepad (0 or 1 for direction). This is looped and needs to be cleared
 
-##### **Keyboard**:
+**Keyboard**:
 - `gaming` Sets WASD & arrow keys as white, turns off all other lights
 - `random` Randomizes every key's color. This is looped and needs to be cleared
 

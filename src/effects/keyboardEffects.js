@@ -31,8 +31,8 @@ module.exports = class KeyboardEffects extends ItemEffects {
     ];
     return setInterval(() => {
       for (let i = 0; i < param.length; i++) {
-        for (let j = 0; j < param[i].length; j++) {
-          param[i][j] = Math.floor(Math.random() * (0xffffff + 1));
+        for (let j = 0; j < param[parseInt(i)].length; j++) {
+          param[parseInt(i)][parseInt(j)] = Math.floor(Math.random() * (0xffffff + 1));
         }
       }
       this.setEffect("CHROMA_CUSTOM", param);

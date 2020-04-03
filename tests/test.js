@@ -22,8 +22,6 @@ Chroma.util.init(() => {
   // Set the chromalink device to white
   Chroma.effects.chromalink.setColor(Chroma.colors.WHITE);
 
-  //Chroma.effects.all.setColor(Chroma.colors.RED);
-
   // Clear all effects and close Chroma after 5 seconds
   setTimeout(() => {
     Chroma.effects.mousepad.clear(mousepadEffect);

@@ -20,7 +20,7 @@ module.exports = class ItemEffect {
   // Apply Effect
   setEffect(effect, data) {
     for (let i = 0; i < this.devices.length; i++) {
-      this.effect = new Effect(this.devices[i], effect, data);
+      this.effect = new Effect(this.devices[parseInt(i)], effect, data);
     }
   }
 
