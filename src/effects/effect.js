@@ -1,8 +1,8 @@
 const Chroma = require("../util/chroma.js");
 
 module.exports = class Effect {
-  constructor(item, type, data) {
-    this.item = item;
+  constructor(device, type, data) {
+    this.device = device;
     this.type = type;
     this.data = data;
     this.createEffect();
@@ -19,7 +19,7 @@ module.exports = class Effect {
       return;
     }
 
-    Chroma.createEffect(this.item, this.type, this.data).then((effect) => {
+    Chroma.createEffect(this.device, this.type, this.data).then((effect) => {
       setTimeout(() => {
         if (Chroma.isNotActive(true)) {
           return;

@@ -1,8 +1,12 @@
 const Effect = require("./effect.js");
 
 module.exports = class ItemEffect {
-  constructor(type) {
-    this.type = type;
+  constructor(device) {
+    if (typeof(device) === "string") {
+      this.devices = [device];
+    } else {
+      this.devices = device;
+    }
   }
 
   // Clear effect interval for looped effects
@@ -15,7 +19,9 @@ module.exports = class ItemEffect {
 
   // Apply Effect
   setEffect(effect, data) {
-    this.effect = new Effect(this.type, effect, data);
+    for (let i = 0; i < this.devices.length; i++) {
+      this.effect = new Effect(this.devices[i], effect, data);
+    }
   }
 
   // Set RGBs as single color
