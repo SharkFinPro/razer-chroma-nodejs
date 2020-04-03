@@ -2,7 +2,7 @@
 
 Razer Chroma Node.js allows you to control the lights on Razer Chroma devices using node.js
 
-[![Npm Version](https://img.shields.io/npm/v/razer-chroma-nodejs.svg?maxAge=3600)](https://www.npmjs.com/package/razer-chroma-nodejs) [![Build Status](https://travis-ci.org/SharkFinPro/razer-chroma-nodejs.svg?branch=master)](https://travis-ci.org/SharkFinPro/razer-chroma-nodejs) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/87e642999aa543a989cd09d91d3d7973)](https://www.codacy.com/manual/SharkFinPro/razer-chroma-nodejs?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=SharkFinPro/razer-chroma-nodejs&amp;utm_campaign=Badge_Grade)
+[![Npm Version](https://img.shields.io/npm/v/razer-chroma-nodejs.svg?maxAge=3600)](https://www.npmjs.com/package/razer-chroma-nodejs) [![Npm Downloads](https://img.shields.io/npm/dt/razer-chroma-nodejs.svg?maxAge=3600)](https://www.npmjs.com/package/razer-chroma-nodejs) [![Build Status](https://travis-ci.org/SharkFinPro/razer-chroma-nodejs.svg?branch=master)](https://travis-ci.org/SharkFinPro/razer-chroma-nodejs) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/87e642999aa543a989cd09d91d3d7973)](https://www.codacy.com/manual/SharkFinPro/razer-chroma-nodejs?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=SharkFinPro/razer-chroma-nodejs&amp;utm_campaign=Badge_Grade)
 
 ## Installation
 
@@ -43,13 +43,11 @@ Chroma.util.init(() => {
 
 ### Effects
 
-`Chroma.effects`
-
-**Colors**
+##### **Colors**
  - `Chroma.colors` List of pre defined Colors
  - `Chroma.colors.rgb(r, g, b)` Use an RGB color
 
-**Devices**
+##### **Devices**
 - `Chroma.effects.mouse` Mouse specific effects
 - `Chroma.effects.mousepad` Mousepad specific effects
 - `Chroma.effects.headset` Headset specific effects
@@ -58,14 +56,14 @@ Chroma.util.init(() => {
 - `Chroma.effects.chromalink` Chromalink specific effects
 - `Chroma.effects.all` Effects for all devices
 
-**All Devices**:
+##### **All Devices**:
 - `.setColor(color)` Change static color
 - `.off()` Turn the lights off
 
-**Mousepad**:
+##### **Mousepad**:
 - `.wave(direction)` Create a wave effect around the mousepad (0 or 1 for direction). This is looped and needs to be cleared
 
-**Keyboard**:
+##### **Keyboard**:
 - `gaming` Sets WASD & arrow keys as white, turns off all other lights
 - `random` Randomizes every key's color. This is looped and needs to be cleared
 
