@@ -26,6 +26,11 @@ module.exports = (params, postData) => {
       reject(err);
     });
 
+    req.on("timeout", () => {
+      reject("timed out");
+      req.destroy();
+    });
+
     // If data is passed then send data
     if (postData) {
       req.write(postData);

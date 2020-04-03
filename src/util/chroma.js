@@ -52,7 +52,8 @@ module.exports = {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
-      }
+      },
+      timeout: 10000
     }, JSON.stringify({
       "title": "Razer Chroma nodejs Editor",
       "description": "This edits Razer Chroma effects using nodejs",
