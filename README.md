@@ -58,6 +58,7 @@ Chroma.util.init(() => {
 
 **All Devices**:
 - `.setColor(color)` Change static color
+- `.cycleSpectrum()` Cycle through the color spectrum. This is looped and needs to be cleared
 - `.off()` Turn the lights off
 
 **Mousepad**:
