@@ -33,15 +33,15 @@ module.exports = class ItemEffect {
   cycleSpectrum() {
     let r = 255, g = 0, b = 0;
     return setInterval(() => {
-      if (r > 0 && b == 0) {
+      if (r > 0 && b === 0) {
         r--;
         g++;
       }
-      if (g > 0 && r == 0) {
+      if (g > 0 && r === 0) {
         g--;
         b++;
       }
-      if (b > 0 && g == 0) {
+      if (b > 0 && g === 0) {
         r++;
         b--;
       }
