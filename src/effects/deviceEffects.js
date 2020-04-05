@@ -9,14 +9,6 @@ module.exports = class ItemEffect {
     }
   }
 
-  // Clear effect interval for looped effects
-  clear(effect) {
-    if (typeof(effect) !== "object") {
-      return console.error(new Error("Cannot clear this effect type"));
-    }
-    clearInterval(effect);
-  }
-
   // Apply Effect
   setEffect(effect, data) {
     for (let i = 0; i < this.devices.length; i++) {

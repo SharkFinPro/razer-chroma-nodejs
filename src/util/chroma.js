@@ -111,9 +111,8 @@ module.exports = {
           "color": param
         }
       });
-    } else {
-      return JSON.stringify({ effect, param });
     }
+    return JSON.stringify({ effect, param });
   },
   // Create effect to be applied later
   createEffect(type, effect, param) {

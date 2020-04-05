@@ -70,7 +70,7 @@ Chroma.util.init(() => {
 
 ### Clear Effects
 
-`Chroma.effects.type.clear(effect)` Clear specified effect, must be a looped effect as static effects do not need to be cleared
+`Chroma.effects.clear(effect)` Clear specified effect, must be a looped effect as static effects do not need to be cleared
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

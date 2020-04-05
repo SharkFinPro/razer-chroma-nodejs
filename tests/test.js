@@ -24,8 +24,8 @@ Chroma.util.init(() => {
 
   // Clear all effects and close Chroma after 5 seconds
   setTimeout(() => {
-    Chroma.effects.mousepad.clear(mousepadEffect);
-    Chroma.effects.keyboard.clear(keyboardEffect);
+    Chroma.effects.clear(mousepadEffect);
+    Chroma.effects.clear(keyboardEffect);
     Chroma.util.uninit(() => {
       console.log("Chroma Editing Stopped");
     });
