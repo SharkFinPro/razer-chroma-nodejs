@@ -18,7 +18,9 @@ module.exports = class ItemEffect {
 
   // Set RGBs as single color
   setColor(color) {
-    this.setEffect("CHROMA_STATIC", color);
+    return setInterval(() => {
+      this.setEffect("CHROMA_STATIC", color);
+    }, 150);
   }
 
   // Cycle the color spectrum
@@ -43,6 +45,8 @@ module.exports = class ItemEffect {
 
   // Turn RGBs off
   off() {
-    this.setEffect("CHROMA_NONE");
+    return setInterval(() => {
+      this.setEffect("CHROMA_NONE");
+    }, 150);
   }
 };
