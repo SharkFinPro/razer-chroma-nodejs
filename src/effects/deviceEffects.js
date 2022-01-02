@@ -1,4 +1,5 @@
 const Effect = require("./effect.js");
+const Chroma = require("../util/chroma.js")
 
 module.exports = class ItemEffect {
   constructor(device) {
@@ -6,6 +7,16 @@ module.exports = class ItemEffect {
       this.devices = [device];
     } else {
       this.devices = device;
+    }
+  }
+
+  // Remove effects
+  clear() {
+    for (let device in this.devices) {
+      if (device === null) {
+        continue;
+      }
+      clearInterval(Chroma.effects[device]);
     }
   }
 
@@ -18,15 +29,13 @@ module.exports = class ItemEffect {
 
   // Set RGBs as single color
   setColor(color) {
-    return setInterval(() => {
-      this.setEffect("CHROMA_STATIC", color);
-    }, 150);
+    this.setEffect("CHROMA_STATIC", color);
   }
 
   // Cycle the color spectrum
   cycleSpectrum() {
     let r = 255, g = 0, b = 0;
-    return setInterval(() => {
+    const effect = setInterval(() => {
       if (r > 0 && b === 0) {
         r--;
         g++;
@@ -41,12 +50,14 @@ module.exports = class ItemEffect {
       }
       this.setEffect("CHROMA_STATIC", (b << 16) + (g << 8) + r);
     }, 15);
+
+    for (let device in this.devices) {
+      Chroma.effects[device] = effect;
+    }
   }
 
   // Turn RGBs off
   off() {
-    return setInterval(() => {
-      this.setEffect("CHROMA_NONE");
-    }, 150);
+    this.setEffect("CHROMA_NONE");
   }
 };

@@ -28,18 +28,18 @@ Chroma.util.init(() => {
 
   // Close Chroma after 5 seconds
   setTimeout(() => {
-    Chroma.util.uninit(() => {
+    Chroma.util.close(() => {
       console.log("Chroma Editing Stopped");
     });
   }, 5000);
 });
 ```
 
-### Initialize & Uninitialize
+### Initialize & Close
 
 `Chroma.util.init(callback);` Must be called to do anything with Chroma, Chroma is ready when callback is called.
 
-`Chroma.util.uninit(callback);` Must be called to close Chroma, all custom looped effects must be cleared before calling this. Chroma is closed when callback is called.
+`Chroma.util.close(callback);` Must be called to close Chroma. Chroma is closed when callback is called.
 
 ### Effects
 
@@ -60,6 +60,7 @@ Chroma.util.init(() => {
 - `.setColor(color)` Change static color
 - `.cycleSpectrum()` Cycle through the color spectrum. This is looped and needs to be cleared
 - `.off()` Turn the lights off
+- `.clear()` Clear non-static effects
 
 **Mousepad**:
 - `.wave(direction)` Create a wave effect around the mousepad (0 or 1 for direction). This is looped and needs to be cleared
@@ -67,10 +68,6 @@ Chroma.util.init(() => {
 **Keyboard**:
 - `gaming` Sets WASD & arrow keys as white, turns off all other lights
 - `random` Randomizes every key's color. This is looped and needs to be cleared
-
-### Clear Effects
-
-`Chroma.effects.clear(effect)` Clear specified effect, must be a looped effect as static effects do not need to be cleared
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

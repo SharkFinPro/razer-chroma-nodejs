@@ -5,32 +5,26 @@ Chroma.util.init(() => {
   console.log("Chroma Editing Started");
 
   // Create a wave effect on the mousepad
-  const mousepadEffect = Chroma.effects.mousepad.wave(0);
+  Chroma.effects.mousepad.wave(0);
 
   // Set the mouse to green
-  const mouseEffect = Chroma.effects.mouse.setColor(Chroma.colors.GREEN);
+  Chroma.effects.mouse.setColor(Chroma.colors.GREEN);
 
   // Turn the headset off
-  const headsetEffect = Chroma.effects.headset.off();
+  Chroma.effects.headset.off();
 
   // Randomize colors across the keyboard
-  const keyboardEffect = Chroma.effects.keyboard.random();
+  Chroma.effects.keyboard.random();
 
   // Set the keypad to yellow
-  const keypadEffect = Chroma.effects.keypad.setColor(Chroma.colors.YELLOW);
+  Chroma.effects.keypad.setColor(Chroma.colors.YELLOW);
 
   // Set the chromalink device to white
-  const chromalinkEffect = Chroma.effects.chromalink.setColor(Chroma.colors.WHITE);
+  Chroma.effects.chromalink.setColor(Chroma.colors.WHITE);
 
   // Clear all effects and close Chroma after 5 seconds
   setTimeout(() => {
-    Chroma.effects.clear(mousepadEffect);
-    Chroma.effects.clear(mouseEffect);
-    Chroma.effects.clear(headsetEffect);
-    Chroma.effects.clear(keyboardEffect);
-    Chroma.effects.clear(keypadEffect);
-    Chroma.effects.clear(chromalinkEffect);
-    Chroma.util.uninit(() => {
+    Chroma.util.close(() => {
       console.log("Chroma Editing Stopped");
     });
   }, 5000);

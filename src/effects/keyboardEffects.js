@@ -1,4 +1,5 @@
 const ItemEffects = require("./deviceEffects.js");
+const Chroma = require("../util/chroma.js");
 
 module.exports = class KeyboardEffects extends ItemEffects {
   constructor() {
@@ -27,7 +28,7 @@ module.exports = class KeyboardEffects extends ItemEffects {
       [255, 255, 255, 255, 255, 65280, 65280, 65280, 65280, 65280, 16711680, 16711680, 16711680, 16711680, 16711680, 16776960, 16776960, 16776960, 65535, 65535, 65535, 65535],
       [255, 255, 255, 255, 255, 65280, 65280, 65280, 65280, 65280, 16711680, 16711680, 16711680, 16711680, 16711680, 16776960, 16776960, 16776960, 65535, 65535, 65535, 65535]
     ];
-    return setInterval(() => {
+    const effect = setInterval(() => {
       for (let i = 0; i < param.length; i++) {
         for (let j = 0; j < param[parseInt(i)].length; j++) {
           param[parseInt(i)][parseInt(j)] = Math.floor(Math.random() * (0xffffff + 1));
@@ -35,5 +36,7 @@ module.exports = class KeyboardEffects extends ItemEffects {
       }
       this.setEffect("CHROMA_CUSTOM", param);
     }, 150);
+
+    Chroma.effects[this.devices] = effect;
   }
 };

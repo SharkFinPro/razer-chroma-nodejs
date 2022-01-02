@@ -15,18 +15,16 @@ module.exports = class Effect {
 
   // Create the effect
   createEffect() {
-    if (Chroma.isNotActive(true)) {
+    if (!Chroma.isActive()) {
       return;
     }
 
     Chroma.createEffect(this.device, this.type, this.data).then((effect) => {
-      setTimeout(() => {
-        if (Chroma.isNotActive(true)) {
-          return;
-        }
-        this.effect = effect;
-        this.setEffect();
-      }, 700);
+      if (!Chroma.isActive()) {
+        return;
+      }
+      this.effect = effect;
+      this.setEffect();
     }).catch(console.error);
   }
 };

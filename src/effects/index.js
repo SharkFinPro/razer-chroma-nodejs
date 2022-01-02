@@ -10,11 +10,4 @@ module.exports = {
   keypad: new DeviceEffects("keypad"),
   chromalink: new DeviceEffects("chromalink"),
   all: new DeviceEffects(["mouse", "mousepad", "headset", "keyboard", "keypad", "chromalink"]),
-  // Clear effect interval for looped effects
-  clear: (effect) => {
-    if (typeof(effect) !== "object") {
-      return console.error(new Error("Cannot clear this effect type"));
-    }
-    clearInterval(effect);
-  }
 };

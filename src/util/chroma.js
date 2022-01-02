@@ -1,30 +1,21 @@
 const httpRequest = require("./httpRequest.js");
 
 module.exports = {
-  // Check if Chroma is NOT active
-  isNotActive(hideError) {
-    if (this.sessionid) {
-      return false;
+  effects: [],
+  // Check if Chroma is active
+  isActive(debug) {
+    const active = this.sessionid != null;
+
+    if (debug) {
+      console.error(new Error(`Chroma editing is ${active ? "already" : "not"} active`));
     }
-    if (!hideError) {
-      console.error(new Error("Chroma editing is not active"));
-    }
-    return true;
-  },
-  // Check if Chroma IS Active
-  isActive(hideError) {
-    if (!this.sessionid) {
-      return false;
-    }
-    if (!hideError) {
-      console.error(new Error("Chroma editing is already active"));
-    }
-    return true;
+
+    return active;
   },
   // Set interval that runs every second sending a heartbeat to the Chroma Rest API
   sendHeartbeat() {
     this.heartbeat = setInterval(() => {
-      if (this.isNotActive()) {
+      if (!this.isActive()) {
         return;
       }
 
@@ -37,7 +28,7 @@ module.exports = {
           "Content-Type": "application/json"
         }
       }).catch(console.error);
-    }, 1000);
+    }, 5000);
   },
   // Initiate the connection to Chroma
   init(callback) {
@@ -73,14 +64,18 @@ module.exports = {
       this.sessionid = data.sessionid;
       this.sendHeartbeat();
       if (callback) {
-        callback();
+        setTimeout(callback, 2000);
       }
     }).catch(console.error);
   },
   // End the connection with Chroma
-  uninit(callback) {
-    if (this.isNotActive()) {
+  close(callback) {
+    if (!this.isActive()) {
       return;
+    }
+
+    for (let effect in this.effects) {
+      clearInterval(this.effects[effect]);
     }
 
     clearInterval(this.heartbeat);
@@ -117,7 +112,7 @@ module.exports = {
   // Create effect to be applied later
   createEffect(type, effect, param) {
     return new Promise((resolve, reject) => {
-      if (this.isNotActive()) {
+      if (!this.isActive()) {
         return;
       }
 
@@ -141,7 +136,7 @@ module.exports = {
   },
   // Apply an effect
   setEffect(id) {
-    if (this.isNotActive()) {
+    if (!this.isActive()) {
       return;
     }
 
