@@ -1,6 +1,6 @@
 {
   "name": "razer-chroma-nodejs",
-  "version": "1.3",
+  "version": "1.3.0",
   "description": "Change Razer Chroma lighting effects using nodejs",
   "main": "src/index.js",
   "directories": {
