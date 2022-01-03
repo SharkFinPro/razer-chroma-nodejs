@@ -2,7 +2,7 @@ const Chroma = require("../src/index.js");
 
 /* Create effect */
 const waveEffect = () => {
-  Chroma.effects.keyboard.wave(0);
+  Chroma.effects.keyboard.wave(0, 5);
 
   return setInterval(() => {
     const cellData = Chroma.effects.keyboard.getData();

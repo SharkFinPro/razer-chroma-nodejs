@@ -59,7 +59,7 @@ module.exports = class KeyboardEffects extends ItemEffects {
   }
 
   // Wave effect, smooth rainbow transitions
-  wave(dir) {
+  wave(dir, speed) {
     this.cellData = [];
 
     // Load the cells up with rainbow colors at an interval
@@ -68,9 +68,9 @@ module.exports = class KeyboardEffects extends ItemEffects {
     do {
       if (count % ~~(765 / (values - 1)) === 0) {
         if (dir === 0) {
-          this.cellData.unshift(new ColorCell(r, g, b));
+          this.cellData.unshift(new ColorCell(r, g, b, speed));
         } else {
-           this.cellData.push(new ColorCell(r, g, b));
+           this.cellData.push(new ColorCell(r, g, b, speed));
         }
       }
 

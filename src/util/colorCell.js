@@ -1,11 +1,11 @@
 /* Cell data, used to store colors */
 module.exports = class ColorCell {
-  constructor(r, g, b) {
+  constructor(r, g, b, speed) {
     this.r = r;
     this.g = g;
     this.b = b;
 
-    this.speed = 3;
+    this.speed = speed || 3;
   }
 
   getColor() {
