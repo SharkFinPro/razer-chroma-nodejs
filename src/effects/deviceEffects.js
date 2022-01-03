@@ -1,5 +1,5 @@
-const Effect = require("./effect.js");
-const Chroma = require("../util/chroma.js")
+const Effect = require("./effect.js"),
+  Chroma = require("../util/chroma.js");
 
 module.exports = class ItemEffect {
   constructor(device) {

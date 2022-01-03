@@ -102,8 +102,8 @@ module.exports = {
     } else if (effect === "CHROMA_STATIC") {
       return JSON.stringify({
         effect,
-        "param": {
-          "color": param
+        param: {
+          color: param
         }
       });
     }
